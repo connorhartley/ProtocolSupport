@@ -2,13 +2,8 @@ package protocolsupport.zplatform;
 
 import org.spigotmc.SpigotConfig;
 
-import net.glowstone.GlowServer;
 import net.minecraft.server.v1_12_R1.NetworkManager;
 import protocolsupport.api.ServerPlatformIdentifier;
-import protocolsupport.zplatform.impl.glowstone.GlowStoneMiscUtils;
-import protocolsupport.zplatform.impl.glowstone.GlowStonePacketFactory;
-import protocolsupport.zplatform.impl.glowstone.GlowStoneWrapperFactory;
-import protocolsupport.zplatform.impl.glowstone.injector.GlowstonePlatformInjector;
 import protocolsupport.zplatform.impl.spigot.SpigotMiscUtils;
 import protocolsupport.zplatform.impl.spigot.SpigotPacketFactory;
 import protocolsupport.zplatform.impl.spigot.SpigotWrapperFactory;
@@ -26,11 +21,6 @@ public class ServerPlatform {
 			NetworkManager.class.getDeclaredFields();
 			SpigotConfig.class.getDeclaredFields();
 			current = new ServerPlatform(ServerPlatformIdentifier.SPIGOT, new SpigotPlatformInjector(), new SpigotMiscUtils(), new SpigotPacketFactory(), new SpigotWrapperFactory());
-		} catch (Throwable t) {
-		}
-		try {
-			GlowServer.class.getDeclaredFields();
-			current = new ServerPlatform(ServerPlatformIdentifier.GLOWSTONE, new GlowstonePlatformInjector(), new GlowStoneMiscUtils(), new GlowStonePacketFactory(), new GlowStoneWrapperFactory());
 		} catch (Throwable t) {
 		}
 		return current != null;
